@@ -1,5 +1,4 @@
 
-
 *{
     box-sizing: border-box;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
@@ -8,20 +7,23 @@
 body{
     background-color: rgb(1, 1, 35);
     color: white;
+    display: flex;
+    justify-content: center;
 
 }
 
 .container {
-    width: 1500px;
+    width: 400px;
+    border: 1px solid white;
+    padding: 50px;
    display: flex;
    flex-direction: column;
-
    align-items: center;
    margin-top: 150px;
  
 }
 input{
-    width: 500px;
+    width: 220px;
     padding:10px 20px;
     border-radius:50px ;
     border: none;
@@ -48,14 +50,14 @@ input{
 
  ol h3{
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 28px;
+    font-size: 18px;
     text-align: center;
     color: rgb(66, 66, 237) ;
 
 }
 
 hr{
-    width: 50%;
+    width: 100%;
 
     margin-top: 50px;
     
@@ -93,7 +95,7 @@ ol li{
     background-color: rgb(2, 2, 55);
 }
 ol  {
-   width: 60%; 
+   width: 100%; 
    
  }
  

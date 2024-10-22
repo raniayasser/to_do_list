@@ -1,40 +1,50 @@
-var input=document.querySelector("input");
-var btn=document.querySelector(".addTask > button");
-btn.addEventListener('click',addList)
+class taskManager {
+  constructor() {
+    this.input = document.querySelector("input");
+    this.btn = document.querySelector(".addTask > button");
+    this.notComplete = document.querySelector(".notComplete");
+    this.complete = document.querySelector(".Complete");
 
-function addList(e){
+    this.btn.addEventListener("click", this.addList.bind(this));
+  }
+  addList() {
+    const task = this.input.value;
 
-    var notComplete=document.querySelector(".notComplete");
-    var Complete=document.querySelector(".Complete");
-    var newLi=document.createElement("li");
-    var checkBtn=document.createElement("button");
-    var delBtn=document.createElement("button");
-    checkBtn.innerHTML='<i class="fa fa-check"></i>';
-    delBtn.innerHTML='<i class="fa fa-trash"></i>';
-
-    if(input.value !==''){
-        newLi.textContent = input.value; //add task
-        input.value='';
-        notComplete.appendChild(newLi);
-        newLi.appendChild(checkBtn);
-        newLi.appendChild(delBtn);
-
-
-        checkBtn.addEventListener('click',function(){
-            var parent=this.parentNode;
-            parent.remove();
-            Complete.appendChild(parent);
-            checkBtn.style.display='none';
-          
-        });
-        delBtn.addEventListener('click', function(){
-            var parent=this.parentNode;
-            parent.remove();
-    
-        });
+    if (task !== "") {
+      const newLi = this.createTaskItem(task);
+      this.input.value = "";
+      this.notComplete.appendChild(newLi);
     }
-  
+  }
 
+  createTaskItem(task) {
+    const newLi = document.createElement("li");
+    const checkBtn = document.createElement("button");
+    const delBtn = document.createElement("button");
+    checkBtn.innerHTML = '<i class="fa fa-check"></i>';
+    delBtn.innerHTML = '<i class="fa fa-trash"></i>';
+    newLi.textContent = task;
 
+    newLi.appendChild(checkBtn);
+    newLi.appendChild(delBtn);
+    checkBtn.addEventListener("click", () =>
+      this.markComplete(newLi, checkBtn)
+    );
+    delBtn.addEventListener("click", () => this.deleteTask(newLi));
+    return newLi;
+  }
 
+  markComplete(taskItem, checkBtn) {
+    taskItem.remove();
+    this.complete.appendChild(taskItem);
+    checkBtn.style.display = "none";
+  }
+
+  deleteTask(taskItem) {
+    taskItem.remove();
+  }
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  new taskManager();
+});
